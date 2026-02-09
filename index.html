@@ -1,67 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Letter</title>
-    <style>
-        body {
-            background-color: #ffcccb;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            overflow: hidden;
-        }
-        h1 {
-            color: #ff69b4;
-            animation: heartbeat 1s infinite;
-        }
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        .heart {
-            position: relative;
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            background: red;
-            transform: rotate(-45deg);
-            margin: 20px;
-        }
-        .heart::before,
-        .heart::after {
-            content: "";
-            background: red;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            position: absolute;
-        }
-        .heart::before {
-            top: -50px;
-            left: 0;
-        }
-        .heart::after {
-            left: 50px;
-            top: 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Это тебе, зайка ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .envelope {
+      width: 240px;
+      height: 160px;
+      background: #fff;
+      cursor: pointer;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.4s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.1) rotate(-2deg);
+    }
+
+    .envelope span {
+      font-size: 20px;
+      color: #e25555;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .letter {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.6s;
+    }
+
+    .letter-content {
+      background: #fff;
+      padding: 35px;
+      max-width: 420px;
+      border-radius: 18px;
+      text-align: center;
+      animation: pop 0.5s ease;
+    }
+
+    .letter-content h1 {
+      color: #e25555;
+      margin-bottom: 15px;
+    }
+
+    .letter-content p {
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .love-btn {
+      margin-top: 15px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: #fff;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: transform 0.3s;
+    }
+
+    .love-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .close {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 22px;
+      animation: float 3s linear forwards;
+      pointer-events: none;
+    }
+
+    .kiss {
+      position: fixed;
+      font-size: 40px;
+      animation: kissFly 2s ease forwards;
+      pointer-events: none;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-250px); opacity: 0; }
+    }
+
+    @keyframes kissFly {
+      from { transform: scale(0.5); opacity: 1; }
+      to { transform: scale(1.5) translateY(-300px); opacity: 0; }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>My Dearest Love</h1>
-    <div class="heart"></div>
-    <p>Here is my love letter to you. You are the light of my life, and I cherish every moment we spend together. You make my heart sing!</p>
-    <audio controls>
-        <source src="your-audio-file.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <script>
-        // You can add interactive elements here later
-        console.log("Love letter loaded!");
-    </script>
+
+  <!-- Конверт -->
+  <div class="envelope" onclick="openLetter()">
+    <span>Это тебе,<br>зайка 💌</span>
+  </div>
+
+  <!-- Письмо -->
+  <div class="letter" id="letter">
+    <div class="letter-content">
+      <h1>С 14 февраля ❤️</h1>
+
+      <p>
+        Моя любимая <b>Верочка</b>,<br>
+        ты самое тёплое и дорогое, что есть в моей жизни.
+        Спасибо тебе за твою нежность, заботу и улыбку.
+        Я безумно тебя люблю и всегда рядом 💘❤️‍🔥💌❣️💞
+        <br><br>
+        С любовью,<br>
+        <b>Твой орешек 😉</b><br>
+        <span style="font-size:14px;color:#777;">14 февраля ❤️</span>
+      </p>
+
+      <button class="love-btn" onclick="toggleMusic()">🎵 Включить музыку</button>
+      <br>
+      <button class="love-btn" onclick="sendLove()">Я тебя люблю 💖</button>
+
+      <div class="close" onclick="closeLetter()">Закрыть</div>
+    </div>
+  </div>
+
+  <!-- Музыка -->
+  <audio id="music" loop>
+    <source src="DaBro - Давай навсегда.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function openLetter() {
+      document.getElementById('letter').style.display = 'flex';
+    }
+
+    function closeLetter() {
+      document.getElementById('letter').style.display = 'none';
+      document.getElementById('music').pause();
+    }
+    function toggleMusic() {
+      const music = document.getElementById('music');
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    function sendLove() {
+      for (let i = 0; i < 6; i++) {
+        let kiss = document.createElement('div');
+        kiss.className = 'kiss';
+        kiss.innerHTML = '💋';
+        kiss.style.left = Math.random() * window.innerWidth + 'px';
+        kiss.style.top = (window.innerHeight / 2) + 'px';
+        document.body.appendChild(kiss);
+        setTimeout(() => kiss.remove(), 2000);
+      }
+
+      for (let i = 0; i < 15; i++) {
+        let heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = window.innerHeight + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      }
+    }
+  </script>
+
 </body>
 </html>
