@@ -3,10 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love</title>
+    <title>Love Letter</title>
+    <style>
+        body {
+            background-color: #ffcccb;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff69b4;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .heart {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: red;
+            transform: rotate(-45deg);
+            margin: 20px;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            background: red;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        .heart::after {
+            left: 50px;
+            top: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Love</h1>
-    <p>Here's to love and all the joy it brings!</p>
+    <h1>My Dearest Love</h1>
+    <div class="heart"></div>
+    <p>Here is my love letter to you. You are the light of my life, and I cherish every moment we spend together. You make my heart sing!</p>
+    <audio controls>
+        <source src="your-audio-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        // You can add interactive elements here later
+        console.log("Love letter loaded!");
+    </script>
 </body>
 </html>
